@@ -1,0 +1,5 @@
+ControlFocus("将打印输出另存为", "", "")
+WinWait("[CLASS:#32770]", "", 10)
+ControlSetText("将打印输出另存为","","Edit1",$CmdLine[1])
+Sleep(2000)
+ControlClick("","","Button2")
