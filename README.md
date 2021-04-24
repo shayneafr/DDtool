@@ -9,7 +9,7 @@
 # 简单说明代码的逻辑，方便大家根据实际情况调整内容。
 具体如百度等因为网站本身有特点，所以也有相应适配的代码，就不一一列举了，在这分享一些我踩过的坑。由于我也是野鸡学习法，所以懂代码的求轻喷...反正这个截图本身太快也容易报错，所以没把心思放在优化代码上。附件也有封装好的命令行的代码，但是日常会有bug，所以大家还是懂点代码吧~使用前请看以下代码注释，不然一定会有哪里报错，比如chromedriver的版本问题！
 当时没觉得会分享，有很多代码用的网上分享的，如有侵权联系我吧QAQ
-
+ ```
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
@@ -38,7 +38,7 @@ for word in words:
     driver = webdriver.Chrome(executable_path='chromedriver.exe',chrome_options=chrome_options) # 务必注意！chromedriver这个程序需要下载，和路径一致，比如这里就是放在这个执行的.py边上。不同chrome的对应程序版本不一样，一定要网上找对应的不然会报错。
     driver.maximize_window() # 后台放最大，好截图
     driver.get("http://www.csrc.gov.cn/pub/newsite/") # 具体访问的网址
-    time.sleep(2) # 在此停顿两秒！政府机关的网站容易卡，数字可以自己改
+    time.sleep(2) # 在此停顿两秒！政府机关的网站容易卡，数字可以自己改 
     elem = driver.find_element_by_id("schword") # 根据页面属性找到对应的搜索框啥的，其实更推荐用xpath路径，可以网上了解下，就是在F12调出控制台，用左上角的鼠标找到你想找的搜索框，然后看看控制台显示在哪里，右键可以复制xpath路径，把这里改成find_element_by_xpath，括号放你复制出来的路径。这样避免找不到这个所谓的id。id怎么找和xpath一样。
     elem.clear() # 清空搜索框的内容
     elem.send_keys(word) # 输入读取的txt文件中每行的人名、公司名
@@ -55,3 +55,4 @@ for word in words:
     except BaseException as pic_msg:
         print("截图失败：%s" % pic_msg) # 反馈截图结果
     driver.close() # 关闭这个浏览器，如果放在这个位置就是每个人名关闭一次，因为实际如果不关闭我老是遇到各种bug还不如查一次关一次。如果要提高效率，这行顶格写。
+ ```
